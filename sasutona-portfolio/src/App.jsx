@@ -1,4 +1,11 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+
 import Navbar from "./Wrapper/Navbar"
+import Footer from "./Wrapper/Footer"
+import Home from "./pages/Home"
+import AboutUs from "./pages/AboutUs"
+import ContactUs from "./pages/ContactUs"
+import NotFound from "./pages/NotFound"
 
 function App() {
   return (
@@ -6,29 +13,23 @@ function App() {
       <div className="App">
         <Navbar />
         <div className="content">
-          <Switch>
+          <Routes>
 
-            <Route exact path="/">
-              <Home />
-            </Route>
+            <Route path="/" element={<Home />} />
 
-            <Route exact path="/create">
-              <Create />
-            </Route>
+            <Route path="/About-Us" element={<AboutUs />} />
 
+            <Route path="/Contact-Us" element={<ContactUs />} />
 
-            <Route exact path="/blogs/:id">
-              <BlogDetails />
-            </Route>
+            <Route path="*" element={<NotFound />} />
 
-            <Route path="*">
-              <NotFound />
-            </Route>
-
-          </Switch>
+          </Routes>
         </div>
+        <Footer />
       </div>
     </Router>
+
+
   )
 }
 
