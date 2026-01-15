@@ -3,3 +3,5 @@ const navItems = [
     { _id: "about-us", name: "About Us", link: '/about-us' },
     { _id: "contact-us", name: "Contact Us", link: '/contact-us' },
 ]
+
+export default navItems
