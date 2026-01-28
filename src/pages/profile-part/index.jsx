@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Typography, Container, Grid } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
+import { Box, Typography, Container, Grid, Divider } from "@mui/material";
 import { keyframes } from "@mui/system";
 
 import profileImage from "../../assets/profile.jpg";
@@ -24,10 +24,50 @@ const fadeIn = keyframes`
   }
 `;
 
-const index = () => {
+const lineGrow = keyframes`
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+`;
+
+const ProfilePart = () => {
+  const sectionRef = useRef(null);
+  const [animationKey, setAnimationKey] = useState(0);
+
+  useEffect(() => {
+    const target = sectionRef.current;
+    if (!target) {
+      return undefined;
+    }
+
+    let lastEntryWasIntersecting = false;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !lastEntryWasIntersecting) {
+          setAnimationKey((prev) => prev + 1);
+        }
+        lastEntryWasIntersecting = entry.isIntersecting;
+      },
+      {
+        threshold: 0.35,
+      }
+    );
+
+    observer.observe(target);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <React.Fragment>
       <Box
+        ref={sectionRef}
         sx={{
           width: "100%",
           minHeight: "100vh",
@@ -38,12 +78,14 @@ const index = () => {
           <Grid container sx={{ minHeight: "100vh" }}>
             {/* Left Side - Full Image */}
             <Grid item xs={12} md={6}>
-              <Container
+                <Container
+                  key={`profile-image-${animationKey}`}
                 sx={{
                   width: "100%",
                   height: { xs: "50vh", md: "100vh" },
                   overflow: "hidden",
                   p: 5,
+                  pb: 10,
                   animation: `${fadeIn} 900ms ease-out 100ms both`,
                 }}
               >
@@ -74,7 +116,7 @@ const index = () => {
                  
                 }}
               >
-                <Box sx={{ width: "100%", mb: 2 }}>
+                <Box key={`profile-title-${animationKey}`} sx={{ width: "100%", mb: 2 }}>
                   <Box
                     sx={{
                       display: "flex",
@@ -84,6 +126,7 @@ const index = () => {
                     }}
                   >
                     <Typography
+                      key={`profile-first-name-${animationKey}`}
                       sx={{
                         fontSize: { xs: "34px", md: "52px" },
                         fontWeight: "800",
@@ -97,6 +140,7 @@ const index = () => {
                       Jhon Ace
                     </Typography>
                     <Box
+                      key={`profile-divider-${animationKey}`}
                       sx={{
                         flexGrow: 1,
                         height: "2px",
@@ -104,11 +148,13 @@ const index = () => {
                         ml: 2,
                         mr: { xs: -3, md: -40 },
                         minWidth: 0,
-                         animation: `${fadeUp} 900ms ease-out 1000ms both`,
+                        transformOrigin: "left center",
+                        animation: `${lineGrow} 2000ms ease-out 1000ms both`,
                       }}
                     />
                   </Box>
                   <Typography
+                    key={`profile-last-name-${animationKey}`}
                     sx={{
                       fontSize: { xs: "34px", md: "52px" },
                       fontWeight: "800",
@@ -122,6 +168,7 @@ const index = () => {
                 </Box>
 
                 <Typography
+                  key={`profile-title-role-${animationKey}`}
                   sx={{
                     fontSize: "18px",
                     fontWeight: "600",
@@ -137,8 +184,9 @@ const index = () => {
           </Grid>
         </Container>
       </Box>
+      
     </React.Fragment>
   );
 };
 
-export default index;
+export default ProfilePart;
