@@ -1,37 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Typography, Container, Grid, Divider } from "@mui/material";
-import { keyframes } from "@mui/system";
+import { Box, Typography, Container, Grid } from "@mui/material";
 
 import profileImage from "../../assets/profile.jpg";
 
-const fadeUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const lineGrow = keyframes`
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-`;
+import "./profile-part.css";
 
 const ProfilePart = () => {
   const sectionRef = useRef(null);
@@ -70,35 +42,39 @@ const ProfilePart = () => {
         ref={sectionRef}
         sx={{
           width: "100%",
-          minHeight: "100vh",
+          minHeight: { xs: "auto", md: "100vh" },
           display: "flex",
         }}
       >
         <Container maxWidth={false} disableGutters>
-          <Grid container sx={{ minHeight: "100vh" }}>
+          <Grid container sx={{ minHeight: { xs: "auto", md: "100vh" } }}>
             {/* Left Side - Full Image */}
             <Grid item xs={12} md={6}>
                 <Container
                   key={`profile-image-${animationKey}`}
                 sx={{
                   width: "100%",
-                  height: { xs: "50vh", md: "100vh" },
+                  height: { xs: "40vh", sm: "45vh", md: "100vh" },
                   overflow: "hidden",
-                  p: 5,
-                  pb: 10,
-                  animation: `${fadeIn} 900ms ease-out 100ms both`,
+                  p: { xs: 2, sm: 3, md: 5 },
+                  pb: { xs: 3, sm: 6, md: 10 },
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
+                className="profile-image-container"
               >
                 <Box
                   component="img"
                   src={profileImage}
                   alt="Jhon Ace Sasutona"
                   sx={{
-                    width: "100%",
-                    height: "100%",
+                    width: { xs: "80%", sm: "100%", md: "100%" },
+                    height: { xs: "auto", sm: "100%", md: "100%" },
                     objectFit: "cover",
                     display: "block",
                   }}
+                  className="profile-image"
                 />
               </Container>
             </Grid>
@@ -107,35 +83,37 @@ const ProfilePart = () => {
             <Grid item xs={12} md={6}>
               <Box
                 sx={{
-                  height: { xs: "50vh", md: "100vh" },
+                  minHeight: { xs: "auto", md: "100vh" },
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
-                  alignItems: "flex-start",
-                  px: { xs: 3, md: 8 },
+                  alignItems: { xs: "center", md: "flex-start" },
+                  textAlign: { xs: "center", md: "left" },
+                  px: { xs: 2.5, sm: 4, md: 8 },
+                  py: { xs: 3.5, sm: 5, md: 0 },
                  
                 }}
               >
-                <Box key={`profile-title-${animationKey}`} sx={{ width: "100%", mb: 2 }}>
+                <Box key={`profile-title-${animationKey}`} sx={{ width: "100%", mb: { xs: 1.5, md: 2 } }}>
                   <Box
                     sx={{
                       display: "flex",
                       alignItems: "center",
+                      justifyContent: { xs: "center", sm: "flex-start" },
                       width: "100%",
                       minWidth: 0,
+                      flexWrap: { xs: "wrap", sm: "nowrap" },
                     }}
                   >
                     <Typography
                       key={`profile-first-name-${animationKey}`}
                       sx={{
-                        fontSize: { xs: "34px", md: "52px" },
+                        fontSize: { xs: "30px", sm: "38px", md: "52px" },
                         fontWeight: "800",
-                        color: "white",
+                        color: "#ffffff",
                         lineHeight: "1.05",
-                        textTransform: "capitalize",
-                        flexShrink: 0,
-                         animation: `${fadeUp} 900ms ease-out 500ms both`,
                       }}
+                      className="profile-fade-up delay-1"
                     >
                       Jhon Ace
                     </Typography>
@@ -145,23 +123,24 @@ const ProfilePart = () => {
                         flexGrow: 1,
                         height: "2px",
                         backgroundColor: "rgba(255, 255, 255, 0.6)",
-                        ml: 2,
-                        mr: { xs: -3, md: -40 },
+                        ml: { xs: 1.5, sm: 2 },
+                        mr: { xs: 0, md: -40 },
                         minWidth: 0,
+                        display: { xs: "none", sm: "block" },
                         transformOrigin: "left center",
-                        animation: `${lineGrow} 2000ms ease-out 1000ms both`,
                       }}
+                      className="profile-line-grow"
                     />
                   </Box>
                   <Typography
                     key={`profile-last-name-${animationKey}`}
                     sx={{
-                      fontSize: { xs: "34px", md: "52px" },
+                      fontSize: { xs: "30px", sm: "38px", md: "52px" },
                       fontWeight: "800",
-                      color: "white",
+                      color: "#ffffff",
                       lineHeight: "1.05",
-                       animation: `${fadeUp} 900ms ease-out 1500ms both`,
                     }}
+                    className="profile-fade-up delay-2"
                   >
                     Sasutona
                   </Typography>
@@ -170,12 +149,12 @@ const ProfilePart = () => {
                 <Typography
                   key={`profile-title-role-${animationKey}`}
                   sx={{
-                    fontSize: "18px",
+                    fontSize: { xs: "14px", sm: "16px", md: "18px" },
                     fontWeight: "600",
-                    letterSpacing: "2px",
+                    letterSpacing: { xs: "1.5px", md: "2px" },
                     color: "#FFFFFF",
-                    animation: `${fadeUp} 900ms ease-out 2000ms both`,
                   }}
+                  className="profile-fade-up delay-3"
                 >
                   FRONT-END WEB DEVELOPER
                 </Typography>
