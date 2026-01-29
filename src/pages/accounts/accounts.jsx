@@ -2,22 +2,10 @@ import { Container, Grid, Link, Typography } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { keyframes } from "@mui/system";
-
-
 import React from "react";
 
-const floatIcon = keyframes`
-  0% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-6px) scale(1.04);
-  }
-  100% {
-    transform: translateY(0) scale(1);
-  }
-`;
+import "./accounts.css";
+
 
 const Accounts = () => {
   return (
@@ -26,27 +14,38 @@ const Accounts = () => {
         sx={{
           display: "flex",
           color: "#fff",
+          minHeight: { xs: "auto", md: "100vh" },
+          alignItems: { xs: "stretch", md: "center" },
+          justifyContent: "center"
         }}
       >
-        <Grid container spacing="60vh" sx={{ p: "20vh" }}>
+        <Grid
+          container
+          rowSpacing={{ xs: 4, md: 0 }}
+          columnSpacing={{ xs: 0, md: 8 }}
+          sx={{ px: { xs: 2, sm: 4, md: 10 }, py: { xs: 6, md: 14 } }}
+          
+        >
           <Grid
             size={{ xs: 12, md: 6 }}
             sx={{
               display: "flex",
               flexDirection: "column",
+              alignItems: { xs: "center", md: "flex-start" },
+              textAlign: { xs: "center", md: "left" },
             }}
           >
             <Typography
               variant="h1"
               color="#ffff"
-              sx={{ fontFamily: "cursive" }}
+              sx={{ fontFamily: "cursive", fontSize: { xs: "2.5rem", sm: "3rem", md: "3.5rem" } }}
             >
               Accounts
             </Typography>
             <Typography
               variant="h6"
               color="#ffff"
-              sx={{ mt: "5vh", letterSpacing: 2 }}
+              sx={{ mt: { xs: 2, md: 6 }, letterSpacing: { xs: 1, md: 2 }, maxWidth: 520 }}
             >
               You can contact me on the following platforms:
             </Typography>
@@ -55,46 +54,43 @@ const Accounts = () => {
           <Grid size={{ xs: 12, md: 6 }}>
             <Grid
               container
-              spacing={2}
+              spacing={{ xs: 2, sm: 3 }}
               sx={{
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: { xs: "center", md: "flex-end" },
                 alignItems: "center",
-                flexDirection: "row",
+                flexDirection: "column",
               }}
             >
               <Grid
-                size={{ xs: 12, md: 4 }}
+                size={{ xs: 12 }}
+                className="account-card"
                 sx={{
-                  border: "1px solid white",
+                  border: "1px solid rgba(255, 255, 255, 0.5)",
                   display: "flex",
-                  justifyContent: "flex-end",
-                  borderRadius: "8px",
-                  paddingInline: "40vh",
-                  paddingBlock: "3vh",
-                  gap: "0px",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderRadius: "12px",
+                  px: { xs: 2, sm: 2.5, md: 3 },
+                  py: { xs: 2, sm: 2.5, md: 3 },
+                  minHeight: { xs: 80, sm: 96, md: 110 },
+                  width: "100%",
+                  maxWidth: { xs: 340, sm: 420, md: 520 },
                 }}
               >
                 <Link
                   href="https://github.com/Sasut0na"
                   target="_blank"
+                  className="account-link delay-1"
                   sx={{
                     textDecoration: "none",
                     color: "inherit",
                     display: "flex",
                     alignItems: "center",
-                    gap: "16px",
-                    "& svg": {
-                      animation: `${floatIcon} 2.6s ease-in-out infinite`,
-                      transformOrigin: "center",
-                      transition: "transform 200ms ease",
-                    },
-                    "&:hover svg": {
-                      transform: "translateY(-6px) scale(1.08)",
-                    },
+                    gap: { xs: "10px", sm: "14px" },
                   }}
                 >
-                  <FontAwesomeIcon icon={faGithub} size="5x" />
+                  <FontAwesomeIcon icon={faGithub} style={{ fontSize: "clamp(2rem, 7vw, 3.2rem)" }} />
                   <Typography
                     variant="h5"
                     color="white"
@@ -102,6 +98,8 @@ const Accounts = () => {
                       fontFamily: "roboto",
                       display: "flex",
                       alignItems: "center",
+                      fontSize: { xs: "0.95rem", sm: "1.05rem", md: "1.1rem" },
+                      letterSpacing: 1,
                     }}
                   >
                     GITHUB
@@ -110,39 +108,34 @@ const Accounts = () => {
               </Grid>
 
               <Grid
-                size={{ xs: 12, md: 4 }}
+                size={{ xs: 12 }}
+                className="account-card"
                 sx={{
-                  border: "1px solid white",
+                  border: "1px solid rgba(255, 255, 255, 0.5)",
                   display: "flex",
-                  justifyContent: "flex-end",
+                  justifyContent: "flex-start",
                   alignItems: "center",
-                  borderRadius: "8px",
-                  paddingInline: "40vh",
-                  paddingBlock: "5vh",
-                  gap: "20px",
+                  borderRadius: "12px",
+                  px: { xs: 2, sm: 2.5, md: 3 },
+                  py: { xs: 2, sm: 2.5, md: 3 },
+                  minHeight: { xs: 80, sm: 96, md: 110 },
+                  width: "100%",
+                  maxWidth: { xs: 340, sm: 420, md: 520 },
                 }}
               >
                 <Link
                   href="https://www.linkedin.com/in/jhon-ace-sasutona-44a026339/"
                   target="_blank"
+                  className="account-link delay-2"
                   sx={{
                     textDecoration: "none",
                     color: "inherit",
                     display: "flex",
                     alignItems: "center",
-                    gap: "16px",
-                    "& svg": {
-                      animation: `${floatIcon} 2.6s ease-in-out infinite`,
-                      animationDelay: "0.2s",
-                      transformOrigin: "center",
-                      transition: "transform 200ms ease",
-                    },
-                    "&:hover svg": {
-                      transform: "translateY(-6px) scale(1.08)",
-                    },
+                    gap: { xs: "10px", sm: "14px" },
                   }}
                 >
-                  <FontAwesomeIcon icon={faLinkedin} size="5x" />
+                  <FontAwesomeIcon icon={faLinkedin} style={{ fontSize: "clamp(2rem, 7vw, 3.2rem)" }} />
                   <Typography
                     variant="h5"
                     color="white"
@@ -150,46 +143,44 @@ const Accounts = () => {
                       fontFamily: "roboto",
                       display: "flex",
                       alignItems: "center",
+                      fontSize: { xs: "0.95rem", sm: "1.05rem", md: "1.1rem" },
+                      letterSpacing: 1,
                     }}
                   >
                     LINKEDIN
                   </Typography>
                 </Link>
               </Grid>
+
               <Grid
-                size={{ xs: 12, md: 4 }}
+                size={{ xs: 12 }}
+                className="account-card"
                 sx={{
-                  border: "1px solid white",
+                  border: "1px solid rgba(255, 255, 255, 0.5)",
                   display: "flex",
-                  justifyContent: "flex-end",
+                  justifyContent: "flex-start",
                   alignItems: "center",
-                  borderRadius: "8px",
-                  paddingInline: "40vh",
-                  paddingBlock: "5vh",
-                  gap: "20px",
+                  borderRadius: "12px",
+                  px: { xs: 2, sm: 2.5, md: 3 },
+                  py: { xs: 2, sm: 2.5, md: 3 },
+                  minHeight: { xs: 80, sm: 96, md: 110 },
+                  width: "100%",
+                  maxWidth: { xs: 340, sm: 420, md: 520 },
                 }}
               >
                 <Link
                   href="https://mail.google.com/mail/u/0/#inbox?compose=DmwnWrRpddFTjsQCZDTsmDVpMKBPqgtFcGbPXxnHlMFjQZsHvJBJNhkMTdRjstZvCBMVCplBDsDL"
                   target="_blank"
+                  className="account-link delay-3"
                   sx={{
                     textDecoration: "none",
                     color: "inherit",
                     display: "flex",
                     alignItems: "center",
-                    gap: "16px",
-                    "& svg": {
-                      animation: `${floatIcon} 2.6s ease-in-out infinite`,
-                      animationDelay: "0.4s",
-                      transformOrigin: "center",
-                      transition: "transform 200ms ease",
-                    },
-                    "&:hover svg": {
-                      transform: "translateY(-6px) scale(1.08)",
-                    },
+                    gap: { xs: "10px", sm: "14px" },
                   }}
                 >
-                  <FontAwesomeIcon icon={faEnvelope} size="5x" />
+                  <FontAwesomeIcon icon={faEnvelope} style={{ fontSize: "clamp(2rem, 7vw, 3.2rem)" }} />
                   <Typography
                     variant="h5"
                     color="white"
@@ -197,6 +188,8 @@ const Accounts = () => {
                       fontFamily: "roboto",
                       display: "flex",
                       alignItems: "center",
+                      fontSize: { xs: "0.95rem", sm: "1.05rem", md: "1.1rem" },
+                      letterSpacing: 1,
                     }}
                   >
                     GMAIL

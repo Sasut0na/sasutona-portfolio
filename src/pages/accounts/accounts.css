@@ -1,0 +1,39 @@
+@keyframes floatIcon {
+	0% {
+		transform: translateY(0) scale(1);
+	}
+	50% {
+		transform: translateY(-6px) scale(1.04);
+	}
+	100% {
+		transform: translateY(0) scale(1);
+	}
+}
+
+.account-card {
+	transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.account-card:hover {
+	transform: translateY(-4px);
+	border-color: rgba(255, 255, 255, 0.9);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+}
+
+.account-link svg {
+	animation: floatIcon 2.6s ease-in-out infinite;
+	transform-origin: center;
+	transition: transform 200ms ease;
+}
+
+.account-link:hover svg {
+	transform: translateY(-6px) scale(1.08);
+}
+
+.account-link.delay-2 svg {
+	animation-delay: 0.2s;
+}
+
+.account-link.delay-3 svg {
+	animation-delay: 0.4s;
+}

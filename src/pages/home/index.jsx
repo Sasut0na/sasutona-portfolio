@@ -1,7 +1,7 @@
 import React from "react"
 
-import ProfilePart from "../profile-part/index"
-import Accounts from "../accounts/index"
+import ProfilePart from "../profile-part/profile-part"
+import Accounts from "../accounts/accounts"
 
 
 const Home = () => {
